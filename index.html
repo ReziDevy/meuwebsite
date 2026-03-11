@@ -1225,6 +1225,7 @@
   window.addEventListener('scroll', () => {
     const progress = Math.min(window.scrollY / 150, 1);
     scrollHint.style.opacity = 1 - progress;
+    scrollHint.style.left = '50%';
     scrollHint.style.transform = `translateX(-50%) translateY(${window.scrollY * 0.4}px)`;
   });
 
