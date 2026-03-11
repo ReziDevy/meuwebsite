@@ -302,7 +302,9 @@
 
   /* SCROLL INDICATOR */
   .scroll-hint {
-    position: absolute; bottom: 40px; left: 50%;
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
     transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     font-family: 'IBM Plex Mono', monospace;
@@ -310,8 +312,9 @@
     color: var(--muted);
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    z-index: 3;
-    transition: opacity 0.4s ease;
+    z-index: 10;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.1s linear;
   }
   .scroll-line {
     width: 1px; height: 60px;
@@ -1220,12 +1223,9 @@
   // HIDE SCROLL HINT
   const scrollHint = document.querySelector('.scroll-hint');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      scrollHint.style.opacity = '0';
-      scrollHint.style.pointerEvents = 'none';
-    } else {
-      scrollHint.style.opacity = '1';
-    }
+    const progress = Math.min(window.scrollY / 150, 1);
+    scrollHint.style.opacity = 1 - progress;
+    scrollHint.style.transform = `translateX(-50%) translateY(${window.scrollY * 0.4}px)`;
   });
 
   // SMOOTH SCROLL
