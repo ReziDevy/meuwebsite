@@ -311,6 +311,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     z-index: 3;
+    transition: opacity 0.4s ease;
   }
   .scroll-line {
     width: 1px; height: 60px;
@@ -1214,6 +1215,17 @@
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
     });
+  });
+
+  // HIDE SCROLL HINT
+  const scrollHint = document.querySelector('.scroll-hint');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      scrollHint.style.opacity = '0';
+      scrollHint.style.pointerEvents = 'none';
+    } else {
+      scrollHint.style.opacity = '1';
+    }
   });
 
   // SMOOTH SCROLL
