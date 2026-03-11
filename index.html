@@ -304,8 +304,8 @@
   .scroll-hint {
     position: fixed;
     bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     display: flex; flex-direction: column; align-items: center; gap: 8px;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.65rem;
@@ -314,7 +314,7 @@
     text-transform: uppercase;
     z-index: 10;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.1s linear;
+    transition: opacity 0.3s ease;
   }
   .scroll-line {
     width: 1px; height: 60px;
@@ -1225,8 +1225,7 @@
   window.addEventListener('scroll', () => {
     const progress = Math.min(window.scrollY / 150, 1);
     scrollHint.style.opacity = 1 - progress;
-    scrollHint.style.left = '50%';
-    scrollHint.style.transform = `translateX(-50%) translateY(${window.scrollY * 0.4}px)`;
+    scrollHint.style.transform = `translateY(${window.scrollY * 0.4}px)`;
   });
 
   // SMOOTH SCROLL
